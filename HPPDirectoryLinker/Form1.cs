@@ -14,7 +14,6 @@ namespace HPPDirectoryLinker
             // These should be on by default
             resourceFolders.SetItemChecked(0, true);
             resourceFolders.SetItemChecked(1, true);
-            //resourceFolders.SetItemChecked(2, true);
         }
 
         private void SDKbutton_Click(object sender, EventArgs e)
@@ -28,11 +27,13 @@ namespace HPPDirectoryLinker
             if (result == DialogResult.OK)
             {
                 bool ValidSDK = false;
+                // Source SDK 2013 Singleplayer or Multiplayer has sourcetest folder
                 foreach (string dir in Directory.GetDirectories(folderDlg.SelectedPath, "sourcetest"))
                 {
                     ValidSDK = true;
                 }
 
+                // Folder wasn't found
                 if (!ValidSDK)
                 {
                     string msg = "Not a valid path to Source SDK 2013 installation.";
@@ -41,8 +42,20 @@ namespace HPPDirectoryLinker
                     return;
                 }
 
+                // Check for Hammer++
+                string hpp = folderDlg.SelectedPath + "\\bin\\hammerplusplus.exe";
+                if (!File.Exists(hpp))
+                {
+                    string msg = "Hammer++ was not detected in this SDK installation.";
+                    string caption = "Hammer++ Not Detected";
+                    MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Enable Postal 3 and clear button
                 SDKpathBox.Text = folderDlg.SelectedPath;
                 POSTAL3button.Enabled = true;
+                CLEARbutton.Enabled = true;
             }
         }
 
@@ -57,11 +70,13 @@ namespace HPPDirectoryLinker
             if (result == DialogResult.OK)
             {
                 bool ValidP3 = false;
+                // p3 folder
                 foreach (string dir in Directory.GetDirectories(folderDlg.SelectedPath, "p3"))
                 {
                     ValidP3 = true;
                 }
 
+                // cr_base folder (Catharsis Reborn)
                 foreach (string dir in Directory.GetDirectories(folderDlg.SelectedPath, "cr_base"))
                 {
                     ValidP3 = true;
@@ -75,6 +90,7 @@ namespace HPPDirectoryLinker
                     return;
                 }
 
+                // Fill the list, enable buttons
                 P3pathBox.Text = folderDlg.SelectedPath;
                 FillGameFolderBox();
                 LINKbutton.Enabled = true;
@@ -86,6 +102,7 @@ namespace HPPDirectoryLinker
         {
             foreach (string dir in Directory.GetDirectories(P3pathBox.Text))
             {
+                // Remove full path to these folders
                 string nopath = dir.Replace(P3pathBox.Text, "");
                 nopath = nopath.Replace("\\", "");
 
@@ -128,7 +145,15 @@ namespace HPPDirectoryLinker
         }
         void CreateMissingFolders()
         {
+            // custom folder doesn't always exists
+            string custom = SDKpathBox.Text + "\\sourcetest\\custom";
+            if (!Directory.Exists(custom))
+            {
+                Directory.CreateDirectory(custom);
+            }
+
             int index = 0;
+            // create folders one by one, if not then mklink will screech about non-existent folders
             foreach (string folder in gameFolders.Items)
             {
                 if (gameFolders.GetItemChecked(index))
@@ -144,6 +169,7 @@ namespace HPPDirectoryLinker
         }
         private static async void WaitKillCMD(Process cmd)
         {
+            // People doesn't like when something is running in the background, I don't either
             await Task.Delay(2000);
             cmd.Kill();
             string msg = "Directories were linked.";
@@ -152,6 +178,7 @@ namespace HPPDirectoryLinker
         }
         private void LINKbutton_Click(object sender, EventArgs e)
         {
+            // Dude, you can't link anything if you haven't checked anything
             if (gameFolders.CheckedItems.Count == 0)
             {
                 string gcaption = "Error";
@@ -160,6 +187,7 @@ namespace HPPDirectoryLinker
                 return;
             }
 
+            // Same here
             if (resourceFolders.CheckedItems.Count == 0)
             {
                 string gcaption = "Error";
@@ -177,9 +205,10 @@ namespace HPPDirectoryLinker
 
             if (result == DialogResult.Yes)
             {
+                // Create missing folders so mklink will not blow up
                 CreateMissingFolders();
 
-                // Create a .bat file and then delete it quickly (so we can add arguments)
+                // Create a .bat file and then delete it quickly
                 using (StreamWriter sw = File.CreateText("HPPDirLink_latest.bat"))
                 {
                     sw.WriteLine("@echo off");
@@ -195,6 +224,7 @@ namespace HPPDirectoryLinker
                 cmd.StartInfo.RedirectStandardInput = true;
                 cmd.Start();
 
+                // Kill the CMD after 2 seconds
                 WaitKillCMD(cmd);
             }
         }
@@ -240,11 +270,12 @@ namespace HPPDirectoryLinker
             }
             else
             {
-                MessageBox.Show("You have the latest GitHub release.", "No Updates", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"You have the latest GitHub release ({latestVersion}).", "No Updates", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         private void FGDbutton_Click(object sender, EventArgs e)
         {
+            // Bring up the FGD Window
             if (!FGDWindow.IsDisposed)
             {
                 FGDWindow.Show();
@@ -282,6 +313,37 @@ namespace HPPDirectoryLinker
         private void HPPDirectoryLinker_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void CLEARbutton_Click(object sender, EventArgs e)
+        {
+            // Delete custom folder
+            var directory = new DirectoryInfo(SDKpathBox.Text + "\\sourcetest\\custom");
+            if (directory.Exists)
+            {
+                foreach (DirectoryInfo dir in directory.GetDirectories())
+                {
+                    // I can't do anything about unauthorized access error, so this is the best way to make it shut up
+                    try
+                    {
+                        dir.Delete(true);
+                    }
+                    catch
+                    {
+                        // stub intentionally
+                    }
+                }
+
+                string msg = "Linked folders were cleaned from Source SDK 2013.";
+                string caption = "Clear";
+                MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                string msg = "Custom folder in sourcetest was not found. Link directories first with the tool.";
+                string caption = "Error";
+                MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

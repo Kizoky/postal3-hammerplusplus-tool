@@ -118,6 +118,10 @@ namespace HPPDirectoryLinker
                         return;
                     }
                 }
+                else
+                {
+                    return;
+                }
             }
 
             if (fileContent.Length <= 0)

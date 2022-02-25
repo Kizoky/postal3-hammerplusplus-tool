@@ -47,6 +47,7 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.CLEARbutton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
@@ -166,7 +167,7 @@
             // HammerPPLink
             // 
             this.HammerPPLink.AutoSize = true;
-            this.HammerPPLink.Location = new System.Drawing.Point(243, 324);
+            this.HammerPPLink.Location = new System.Drawing.Point(167, 324);
             this.HammerPPLink.Name = "HammerPPLink";
             this.HammerPPLink.Size = new System.Drawing.Size(109, 15);
             this.HammerPPLink.TabIndex = 13;
@@ -176,9 +177,9 @@
             // 
             // FGDbutton
             // 
-            this.FGDbutton.Location = new System.Drawing.Point(472, 132);
+            this.FGDbutton.Location = new System.Drawing.Point(472, 126);
             this.FGDbutton.Name = "FGDbutton";
-            this.FGDbutton.Size = new System.Drawing.Size(84, 38);
+            this.FGDbutton.Size = new System.Drawing.Size(84, 44);
             this.FGDbutton.TabIndex = 14;
             this.FGDbutton.Text = "Fix Postal III FGD";
             this.FGDbutton.UseVisualStyleBackColor = true;
@@ -191,7 +192,7 @@
             this.programVersion.Name = "programVersion";
             this.programVersion.Size = new System.Drawing.Size(34, 15);
             this.programVersion.TabIndex = 15;
-            this.programVersion.Text = "v1.01";
+            this.programVersion.Text = "v1.02";
             this.programVersion.Click += new System.EventHandler(this.programVersion_Click);
             // 
             // UPDATEbutton
@@ -241,11 +242,23 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Game Folders to Link";
             // 
+            // CLEARbutton
+            // 
+            this.CLEARbutton.Enabled = false;
+            this.CLEARbutton.Location = new System.Drawing.Point(313, 320);
+            this.CLEARbutton.Name = "CLEARbutton";
+            this.CLEARbutton.Size = new System.Drawing.Size(128, 23);
+            this.CLEARbutton.TabIndex = 20;
+            this.CLEARbutton.Text = "Clear Linked Folders";
+            this.CLEARbutton.UseVisualStyleBackColor = true;
+            this.CLEARbutton.Click += new System.EventHandler(this.CLEARbutton_Click);
+            // 
             // HPPDirectoryLinker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(579, 348);
+            this.Controls.Add(this.CLEARbutton);
             this.Controls.Add(this.UPDATEbutton);
             this.Controls.Add(this.FGDbutton);
             this.Controls.Add(this.pictureBox1);
@@ -294,5 +307,6 @@
         private GroupBox groupBox2;
         private GroupBox groupBox3;
         private Label label1;
+        private Button CLEARbutton;
     }
 }

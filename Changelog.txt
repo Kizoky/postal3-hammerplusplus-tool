@@ -1,3 +1,9 @@
+[v1.02]
+- Fixed linking not working due to custom folder not being created
+- Fixed FGD Fixer crashing when canceling without selecting a file
+- Now checks for Hammer++ installation
+- Added Link cleaner
+
 [v1.01]
 - Fixed FGD Fixer warning about edited FGD file when it never even happened before
 
