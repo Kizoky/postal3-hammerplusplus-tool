@@ -16,3 +16,5 @@ Hammer++ crashes whenever it's opened in Postal 3's root folder, as such there h
 Creating a custom folder in sourcetest, game folders, and linking them correctly will make Hammer++ work without any issues, of course that is if we don't mention it's original FGD.
 
 Hammer++ needs to be placed in the bin folder (not Postal III's!!) for this to work.
+
+Note: This DOES NOT actually copy the files, this creates a LINK which won't affect your hard disk space
