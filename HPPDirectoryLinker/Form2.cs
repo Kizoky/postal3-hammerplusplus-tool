@@ -126,9 +126,9 @@ namespace HPPDirectoryLinker
                 return;
             }
 
-            bool alreadyGenerated;
+            bool alreadyGenerated = false;
 
-            if (fileName.IndexOf("HPP") != -1)
+            if (fileName.IndexOf("HPP") > -1)
             {
                 alreadyGenerated = true;
             }
@@ -136,16 +136,19 @@ namespace HPPDirectoryLinker
             foreach (string s in fileContent)
             {
                 int generated = s.IndexOf("github");
-                if (generated != -1)
+                if (generated > -1)
                 {
                     alreadyGenerated = true;
                 }
             }
 
-            DialogResult result = MessageBox.Show("Selected FGD file has been edited by this tool before, it is recommended to use the original FGD file.\n\nDo you wish to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.No)
+            if (alreadyGenerated)
             {
-                return;
+                DialogResult result = MessageBox.Show("Selected FGD file has been edited by this tool before, it is recommended to use the original FGD file.\n\nDo you wish to continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.No)
+                {
+                    return;
+                }
             }
 
             progressBar1.Visible = true;
@@ -191,16 +194,6 @@ namespace HPPDirectoryLinker
         }
 
         private void progressBar1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void splitContainer1_Panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }

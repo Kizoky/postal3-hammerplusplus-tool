@@ -1,2 +1,5 @@
+[v1.01]
+- Fixed FGD Fixer warning about edited FGD file when it never even happened before
+
 [v1.00]
 - Initial release

@@ -191,7 +191,7 @@
             this.programVersion.Name = "programVersion";
             this.programVersion.Size = new System.Drawing.Size(34, 15);
             this.programVersion.TabIndex = 15;
-            this.programVersion.Text = "v1.00";
+            this.programVersion.Text = "v1.01";
             this.programVersion.Click += new System.EventHandler(this.programVersion_Click);
             // 
             // UPDATEbutton
