@@ -5,6 +5,7 @@ This is a program to help you getting Hammer++ work with the infamously bad Sour
 - Link Directories with just a few clicks
 - Select Folders you wish to link
 - Built-in Hammer FGD tool, which fixes errors with Postal III's FGD
+- Clear linked folders with just a single click
 
 ![App](https://i.imgur.com/frknYzb.png)
 
