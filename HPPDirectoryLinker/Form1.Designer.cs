@@ -38,23 +38,28 @@
             this.resourceFolders = new System.Windows.Forms.CheckedListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.HammerPPLink = new System.Windows.Forms.LinkLabel();
             this.FGDbutton = new System.Windows.Forms.Button();
             this.programVersion = new System.Windows.Forms.Label();
             this.UPDATEbutton = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.CLEARbutton = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // SDKbutton
             // 
-            this.SDKbutton.Location = new System.Drawing.Point(12, 12);
+            this.SDKbutton.Location = new System.Drawing.Point(8, 43);
             this.SDKbutton.Name = "SDKbutton";
             this.SDKbutton.Size = new System.Drawing.Size(152, 37);
             this.SDKbutton.TabIndex = 0;
@@ -65,7 +70,7 @@
             // POSTAL3button
             // 
             this.POSTAL3button.Enabled = false;
-            this.POSTAL3button.Location = new System.Drawing.Point(12, 55);
+            this.POSTAL3button.Location = new System.Drawing.Point(8, 86);
             this.POSTAL3button.Name = "POSTAL3button";
             this.POSTAL3button.Size = new System.Drawing.Size(152, 38);
             this.POSTAL3button.TabIndex = 1;
@@ -77,7 +82,7 @@
             // 
             this.SDKpathBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SDKpathBox.Location = new System.Drawing.Point(170, 20);
+            this.SDKpathBox.Location = new System.Drawing.Point(166, 51);
             this.SDKpathBox.Name = "SDKpathBox";
             this.SDKpathBox.ReadOnly = true;
             this.SDKpathBox.Size = new System.Drawing.Size(397, 23);
@@ -88,7 +93,7 @@
             // 
             this.P3pathBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.P3pathBox.Location = new System.Drawing.Point(170, 64);
+            this.P3pathBox.Location = new System.Drawing.Point(166, 95);
             this.P3pathBox.Name = "P3pathBox";
             this.P3pathBox.ReadOnly = true;
             this.P3pathBox.Size = new System.Drawing.Size(397, 23);
@@ -100,7 +105,7 @@
             this.LINKbutton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LINKbutton.Enabled = false;
-            this.LINKbutton.Location = new System.Drawing.Point(7, 124);
+            this.LINKbutton.Location = new System.Drawing.Point(7, 118);
             this.LINKbutton.Name = "LINKbutton";
             this.LINKbutton.Size = new System.Drawing.Size(121, 41);
             this.LINKbutton.TabIndex = 4;
@@ -110,14 +115,12 @@
             // 
             // gameFolders
             // 
-            this.gameFolders.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.gameFolders.CheckOnClick = true;
             this.gameFolders.Enabled = false;
             this.gameFolders.FormattingEnabled = true;
-            this.gameFolders.Location = new System.Drawing.Point(12, 114);
+            this.gameFolders.Location = new System.Drawing.Point(7, 20);
             this.gameFolders.Name = "gameFolders";
-            this.gameFolders.Size = new System.Drawing.Size(120, 202);
+            this.gameFolders.Size = new System.Drawing.Size(120, 220);
             this.gameFolders.TabIndex = 7;
             // 
             // resourceFolders
@@ -130,17 +133,19 @@
             "models",
             "materials",
             "particles",
-            "shaders"});
-            this.resourceFolders.Location = new System.Drawing.Point(25, 42);
+            "shaders",
+            "sound"});
+            this.resourceFolders.Location = new System.Drawing.Point(25, 19);
             this.resourceFolders.Name = "resourceFolders";
-            this.resourceFolders.Size = new System.Drawing.Size(84, 76);
+            this.resourceFolders.Size = new System.Drawing.Size(84, 94);
             this.resourceFolders.TabIndex = 8;
+            this.resourceFolders.SelectedIndexChanged += new System.EventHandler(this.resourceFolders_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(25, 24);
+            this.label2.Location = new System.Drawing.Point(25, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 15);
             this.label2.TabIndex = 9;
@@ -149,25 +154,16 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(167, 114);
+            this.pictureBox1.Location = new System.Drawing.Point(163, 154);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(274, 202);
             this.pictureBox1.TabIndex = 11;
             this.pictureBox1.TabStop = false;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 324);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 15);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Made by Kizoky";
-            // 
             // HammerPPLink
             // 
             this.HammerPPLink.AutoSize = true;
-            this.HammerPPLink.Location = new System.Drawing.Point(167, 324);
+            this.HammerPPLink.Location = new System.Drawing.Point(163, 366);
             this.HammerPPLink.Name = "HammerPPLink";
             this.HammerPPLink.Size = new System.Drawing.Size(109, 15);
             this.HammerPPLink.TabIndex = 13;
@@ -177,7 +173,7 @@
             // 
             // FGDbutton
             // 
-            this.FGDbutton.Location = new System.Drawing.Point(472, 126);
+            this.FGDbutton.Location = new System.Drawing.Point(468, 165);
             this.FGDbutton.Name = "FGDbutton";
             this.FGDbutton.Size = new System.Drawing.Size(84, 44);
             this.FGDbutton.TabIndex = 14;
@@ -192,12 +188,12 @@
             this.programVersion.Name = "programVersion";
             this.programVersion.Size = new System.Drawing.Size(34, 15);
             this.programVersion.TabIndex = 15;
-            this.programVersion.Text = "v1.02";
+            this.programVersion.Text = "v1.03";
             this.programVersion.Click += new System.EventHandler(this.programVersion_Click);
             // 
             // UPDATEbutton
             // 
-            this.UPDATEbutton.Location = new System.Drawing.Point(456, 93);
+            this.UPDATEbutton.Location = new System.Drawing.Point(452, 124);
             this.UPDATEbutton.Name = "UPDATEbutton";
             this.UPDATEbutton.Size = new System.Drawing.Size(112, 27);
             this.UPDATEbutton.TabIndex = 16;
@@ -205,19 +201,22 @@
             this.UPDATEbutton.UseVisualStyleBackColor = true;
             this.UPDATEbutton.Click += new System.EventHandler(this.UPDATEbutton_Click);
             // 
-            // groupBox1
+            // label1
             // 
-            this.groupBox1.Location = new System.Drawing.Point(5, 0);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(569, 108);
-            this.groupBox1.TabIndex = 17;
-            this.groupBox1.TabStop = false;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(11, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(118, 15);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Game Folders to Link";
             // 
             // groupBox2
             // 
-            this.groupBox2.Location = new System.Drawing.Point(5, 99);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.gameFolders);
+            this.groupBox2.Location = new System.Drawing.Point(5, 145);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(135, 248);
+            this.groupBox2.Size = new System.Drawing.Size(135, 246);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
             // 
@@ -227,25 +226,16 @@
             this.groupBox3.Controls.Add(this.LINKbutton);
             this.groupBox3.Controls.Add(this.resourceFolders);
             this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Location = new System.Drawing.Point(447, 176);
+            this.groupBox3.Location = new System.Drawing.Point(443, 226);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(128, 171);
+            this.groupBox3.Size = new System.Drawing.Size(128, 165);
             this.groupBox3.TabIndex = 19;
             this.groupBox3.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 96);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 15);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Game Folders to Link";
             // 
             // CLEARbutton
             // 
             this.CLEARbutton.Enabled = false;
-            this.CLEARbutton.Location = new System.Drawing.Point(313, 320);
+            this.CLEARbutton.Location = new System.Drawing.Point(309, 362);
             this.CLEARbutton.Name = "CLEARbutton";
             this.CLEARbutton.Size = new System.Drawing.Size(128, 23);
             this.CLEARbutton.TabIndex = 20;
@@ -253,36 +243,88 @@
             this.CLEARbutton.UseVisualStyleBackColor = true;
             this.CLEARbutton.Click += new System.EventHandler(this.CLEARbutton_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.menuStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Visible;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem,
+            this.aboutToolStripMenuItem1});
+            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.Flow;
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.menuStrip1.Size = new System.Drawing.Size(579, 23);
+            this.menuStrip1.TabIndex = 21;
+            this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exitToolStripMenuItem});
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(37, 19);
+            this.aboutToolStripMenuItem.Text = "File";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // aboutToolStripMenuItem1
+            // 
+            this.aboutToolStripMenuItem1.Name = "aboutToolStripMenuItem1";
+            this.aboutToolStripMenuItem1.Size = new System.Drawing.Size(52, 19);
+            this.aboutToolStripMenuItem1.Text = "About";
+            this.aboutToolStripMenuItem1.Click += new System.EventHandler(this.aboutToolStripMenuItem1_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(5, 26);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(566, 113);
+            this.groupBox1.TabIndex = 17;
+            this.groupBox1.TabStop = false;
+            // 
             // HPPDirectoryLinker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(579, 348);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(579, 393);
+            this.Controls.Add(this.SDKbutton);
             this.Controls.Add(this.CLEARbutton);
             this.Controls.Add(this.UPDATEbutton);
             this.Controls.Add(this.FGDbutton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.HammerPPLink);
             this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.gameFolders);
             this.Controls.Add(this.programVersion);
             this.Controls.Add(this.P3pathBox);
             this.Controls.Add(this.SDKpathBox);
             this.Controls.Add(this.POSTAL3button);
-            this.Controls.Add(this.SDKbutton);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(595, 387);
+            this.MaximumSize = new System.Drawing.Size(595, 500);
             this.MinimumSize = new System.Drawing.Size(595, 387);
             this.Name = "HPPDirectoryLinker";
             this.Text = "Hammer++ Directory Linker";
             this.Load += new System.EventHandler(this.HPPDirectoryLinker_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,15 +340,18 @@
         private CheckedListBox resourceFolders;
         private Label label2;
         private PictureBox pictureBox1;
-        private Label label3;
         private LinkLabel HammerPPLink;
         private Button FGDbutton;
         private Label programVersion;
         private Button UPDATEbutton;
-        private GroupBox groupBox1;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
         private Label label1;
         private Button CLEARbutton;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem aboutToolStripMenuItem;
+        private ToolStripMenuItem aboutToolStripMenuItem1;
+        private ToolStripMenuItem exitToolStripMenuItem;
+        private GroupBox groupBox1;
     }
 }

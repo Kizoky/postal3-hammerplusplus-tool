@@ -28,47 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FixPostalFGD));
             this.FixFGDbutton = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // FixFGDbutton
             // 
+            this.FixFGDbutton.BackColor = System.Drawing.Color.Purple;
+            this.FixFGDbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.FixFGDbutton.ForeColor = System.Drawing.Color.Fuchsia;
             this.FixFGDbutton.Location = new System.Drawing.Point(12, 107);
             this.FixFGDbutton.Name = "FixFGDbutton";
             this.FixFGDbutton.Size = new System.Drawing.Size(196, 30);
             this.FixFGDbutton.TabIndex = 4;
             this.FixFGDbutton.Text = "Browse FGD";
-            this.FixFGDbutton.UseVisualStyleBackColor = true;
+            this.FixFGDbutton.UseVisualStyleBackColor = false;
             this.FixFGDbutton.Click += new System.EventHandler(this.FixFGDbutton_Click);
             // 
             // progressBar1
             // 
+            this.progressBar1.ForeColor = System.Drawing.Color.Fuchsia;
             this.progressBar1.Location = new System.Drawing.Point(12, 78);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(196, 23);
             this.progressBar1.TabIndex = 5;
             this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
-            // label2
+            // pictureBox1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(86, 60);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 15);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Progress";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(196, 125);
-            this.groupBox1.TabIndex = 8;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Fix Postal III FGD";
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, -1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(220, 154);
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
             // 
             // FixPostalFGD
             // 
@@ -76,24 +72,22 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
             this.ClientSize = new System.Drawing.Size(220, 149);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.FixFGDbutton);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.pictureBox1);
             this.MaximumSize = new System.Drawing.Size(236, 188);
             this.MinimumSize = new System.Drawing.Size(236, 188);
             this.Name = "FixPostalFGD";
             this.ShowIcon = false;
             this.Text = "Fix Postal III FGD";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
         private Button FixFGDbutton;
         private ProgressBar progressBar1;
-        private Label label2;
-        private GroupBox groupBox1;
+        private PictureBox pictureBox1;
     }
 }

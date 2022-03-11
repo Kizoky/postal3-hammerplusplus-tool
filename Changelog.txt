@@ -1,3 +1,8 @@
+[v1.03]
+- Added sound folder for linkable directory
+- Added About tab
+- Altered FGD Fixer's style
+
 [v1.02]
 - Fixed linking not working due to custom folder not being created
 - Fixed FGD Fixer crashing when canceling without selecting a file

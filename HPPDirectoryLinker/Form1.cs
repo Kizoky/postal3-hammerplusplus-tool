@@ -7,6 +7,7 @@ namespace HPPDirectoryLinker
     public partial class HPPDirectoryLinker : Form
     {
         FixPostalFGD FGDWindow = new();
+        AboutForm AboutWindow = new();
         public HPPDirectoryLinker()
         {
             InitializeComponent();
@@ -343,6 +344,40 @@ namespace HPPDirectoryLinker
                 string msg = "Custom folder in sourcetest was not found. Link directories first with the tool.";
                 string caption = "Error";
                 MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void resourceFolders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            // Bring up the FGD Window
+            if (!AboutWindow.IsDisposed)
+            {
+                AboutWindow.Show();
+            }
+            else
+            {
+                AboutWindow = new AboutForm();
+                AboutWindow.Show();
             }
         }
     }
