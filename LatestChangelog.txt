@@ -1,4 +1,7 @@
-[v1.03]
-- Added sound folder for linkable directory
-- Added About tab
-- Altered FGD Fixer's style
+[v1.04]
+- Fixed Game folder list duplicated each time you pressed P3 button
+- Added Presets tab
++ Quickly save, load, and switch between presets
++ Will automatically load the first preset on application startup
+
+- Added a warning when trying to link 'shaders' folder (it'll break H++)

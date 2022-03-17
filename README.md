@@ -1,15 +1,14 @@
 # Postal III Hammer++ Tool
-This is a program to help you getting Hammer++ work with the infamously bad Source engine game called Postal III.
+This is a program to help you getting Hammer++ work with the infamously bad Source engine game called Postal III. Only works on Windows 7 or above.
 
 # Features
 - Link Directories with just a few clicks
 - Select Folders you wish to link
 - Built-in Hammer FGD tool, which fixes errors with Postal III's FGD
 - Clear linked folders with just a single click
+- Save current path to both SDK and P3 installations, or switch between presets
 
 ![App](https://i.imgur.com/frknYzb.png)
-
-![Link](https://i.imgur.com/8JCVfYC.png)
 
 # Why does this work?
 Hammer++ crashes whenever it's opened in Postal 3's root folder, as such there had to be an alternative way of loading maps with the map editor.

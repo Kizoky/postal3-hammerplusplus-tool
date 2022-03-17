@@ -1,12 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationIcon>postal3.ico</ApplicationIcon>
+    <Version>$(VersionPrefix)</Version>
+    <Description>A Hammer++aid tool which helps running Hammer++ with Postal III</Description>
+    <FileVersion>1.0.4</FileVersion>
+    <AssemblyVersion>1.0.4</AssemblyVersion>
+    <Copyright>Kizoky</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

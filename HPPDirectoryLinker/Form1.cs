@@ -8,6 +8,9 @@ namespace HPPDirectoryLinker
     {
         FixPostalFGD FGDWindow = new();
         AboutForm AboutWindow = new();
+        PresetsForm PresetsWindow = new("<", "<", null);
+
+        bool bShadersWarning;
         public HPPDirectoryLinker()
         {
             InitializeComponent();
@@ -15,6 +18,10 @@ namespace HPPDirectoryLinker
             // These should be on by default
             resourceFolders.SetItemChecked(0, true);
             resourceFolders.SetItemChecked(1, true);
+
+            // Preventing any memory leak.. lol
+            PresetsWindow.Dispose();
+            PresetsWindow = new PresetsForm(SDKpathBox.Text, P3pathBox.Text, this);
         }
 
         private void SDKbutton_Click(object sender, EventArgs e)
@@ -57,6 +64,8 @@ namespace HPPDirectoryLinker
                 SDKpathBox.Text = folderDlg.SelectedPath;
                 POSTAL3button.Enabled = true;
                 CLEARbutton.Enabled = true;
+
+                PresetsWindow.UpdatePath(SDKpathBox.Text, P3pathBox.Text);
             }
         }
 
@@ -97,10 +106,15 @@ namespace HPPDirectoryLinker
                 LINKbutton.Enabled = true;
                 gameFolders.Enabled = true;
                 resourceFolders.Enabled = true;
+
+                PresetsWindow.UpdatePath(SDKpathBox.Text, P3pathBox.Text);
             }
         }
         void FillGameFolderBox()
         {
+            // Clear game folders (so it won't fill the items twice or more)
+            gameFolders.Items.Clear();
+
             foreach (string dir in Directory.GetDirectories(P3pathBox.Text))
             {
                 // Remove full path to these folders
@@ -349,7 +363,13 @@ namespace HPPDirectoryLinker
 
         private void resourceFolders_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (resourceFolders.GetItemChecked(3) && !bShadersWarning)
+            {
+                string msg = "It is not recommended to link 'shaders' folder, as it can cause black screen, and you'll be unable to work on maps.\n\nEven if 'shaders' will work now, there's no gurantee they'll always work.\n\nYou can try experimenting with it, but it's not really recommended to link.";
+                string caption = "Warning";
+                MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                bShadersWarning = true;
+            }
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -378,6 +398,56 @@ namespace HPPDirectoryLinker
             {
                 AboutWindow = new AboutForm();
                 AboutWindow.Show();
+            }
+        }
+
+        private void presetsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Bring up the Presets Window
+            if (!PresetsWindow.IsDisposed)
+            {
+                //PresetsWindow.Dispose();
+                //PresetsWindow = new PresetsForm(SDKpathBox.Text, P3pathBox.Text);
+                PresetsWindow.Show();
+            }
+            else
+            {
+                PresetsWindow = new PresetsForm(SDKpathBox.Text, P3pathBox.Text, this);
+                PresetsWindow.Show();
+            }
+        }
+
+        public void FillDataFromPresets(string SDK, string P3)
+        {
+            if (SDK != null && P3 != null)
+            {
+                // Enable Postal 3 and clear button
+                SDKpathBox.Text = SDK;
+                POSTAL3button.Enabled = true;
+                CLEARbutton.Enabled = true;
+
+                // Fill the list, enable buttons
+                P3pathBox.Text = P3;
+                FillGameFolderBox();
+                LINKbutton.Enabled = true;
+                gameFolders.Enabled = true;
+                resourceFolders.Enabled = true;
+
+                PresetsWindow.UpdatePath(SDKpathBox.Text, P3pathBox.Text);
+            }
+        }
+
+        bool hasLoadedOnce;
+        public void LoadFirstPresetOnStartup(string SDK, string P3)
+        {
+            if (!hasLoadedOnce)
+            {
+                if (SDK[0] != '<' && P3[0] != '<')
+                {
+                    FillDataFromPresets(SDK, P3);
+                }
+
+                hasLoadedOnce = true;
             }
         }
     }
