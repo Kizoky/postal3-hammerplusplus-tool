@@ -163,7 +163,7 @@ namespace HPPDirectoryLinker
                     index++;
                 }
 
-                Console.WriteLine($"{s} namestart: {namestart} Looking for: {existingPresetNames[presetCombo.SelectedIndex]}");
+                //Console.WriteLine($"{s} namestart: {namestart} Looking for: {existingPresetNames[presetCombo.SelectedIndex]}");
             }
 
             if (newcontent != null)
@@ -375,11 +375,6 @@ namespace HPPDirectoryLinker
             {
                 presetCombo.SelectedIndex = presetCombo.Items.Count-1;
             }
-        }
-
-        private void startupCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void loadOntoMainAppButton_Click(object sender, EventArgs e)

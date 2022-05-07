@@ -147,11 +147,18 @@ namespace HPPDirectoryLinker
                 {
                     if (gameFolders.GetItemChecked(i) && resourceFolders.GetItemChecked(j))
                     {
-                        // SDK
-                        commands += String.Format($"{cmdstart}{SDKpathBox.Text}\\sourcetest\\custom\\{gameFolders.Items[i]}\\{resourceFolders.Items[j]}\\{quote} ");
+                        // Don't attempt linking non-existent folders
+                        string pathToSDKfolders = $"{SDKpathBox.Text}\\sourcetest\\custom\\{gameFolders.Items[i]}\\{resourceFolders.Items[j]}";
+                        string pathToP3folders = $"{P3pathBox.Text}\\{gameFolders.Items[i]}\\{resourceFolders.Items[j]}";
 
-                        // P3
-                        commands += String.Format($"{quote}{P3pathBox.Text}\\{gameFolders.Items[i]}\\{resourceFolders.Items[j]}\\{quote}\n");
+                        if (Directory.Exists(pathToP3folders))
+                        {
+                            // SDK
+                            commands += String.Format($"{cmdstart}{pathToSDKfolders}\\{quote} ");
+
+                            // P3
+                            commands += String.Format($"{quote}{pathToP3folders}\\{quote}\n");
+                        }
                     }
                 }
             }
@@ -198,7 +205,7 @@ namespace HPPDirectoryLinker
             {
                 string gcaption = "Error";
                 string gmsg = "You must select a game folder.";
-                MessageBox.Show(gmsg, gcaption, MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                MessageBox.Show(gmsg, gcaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -207,13 +214,13 @@ namespace HPPDirectoryLinker
             {
                 string gcaption = "Error";
                 string gmsg = "You must select a resource folder.";
-                MessageBox.Show(gmsg, gcaption, MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                MessageBox.Show(gmsg, gcaption, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             string caption = $"Confirmation";
-            string msg = "This will execute the following console commands and create the following folders in Source SDK 2013:\n\n";
-            msg += GatherConsoleCommands();
+            string msg = "The program will now link the selected game folders to Source SDK 2013 Base's Sourcetest\n\nThis will NOT affect Hard Disk space!\n\nDo you wish to continue?";
+            //msg += GatherConsoleCommands();
 
             DialogResult result;
             result = MessageBox.Show(msg, caption, MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
@@ -325,11 +332,6 @@ namespace HPPDirectoryLinker
             }
         }
 
-        private void HPPDirectoryLinker_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void CLEARbutton_Click(object sender, EventArgs e)
         {
             // Delete custom folder
@@ -365,21 +367,11 @@ namespace HPPDirectoryLinker
         {
             if (resourceFolders.GetItemChecked(3) && !bShadersWarning)
             {
-                string msg = "It is not recommended to link 'shaders' folder, as it can cause black screen, and you'll be unable to work on maps.\n\nEven if 'shaders' will work now, there's no gurantee they'll always work.\n\nYou can try experimenting with it, but it's not really recommended to link.";
+                string msg = "It is not recommended to link 'shaders' folder, as it can cause black screen, and you'll be unable to work on maps.\n\nEven if 'shaders' will work now, there's no gurantee they'll always work.\n\nYou can try experimenting with it, but it's not really recommended to link.\n\nClick the 'Clear Linked Folders' button if Shaders messed up your Hammer++, and relink everything without Shaders folder";
                 string caption = "Warning";
                 MessageBox.Show(msg, caption, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 bShadersWarning = true;
             }
-        }
-
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)

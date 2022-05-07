@@ -1,3 +1,14 @@
+[v1.05]
+- Fixed FGD Fixer commenting out parts of the FGD that it wasn't supposed to
+- Fixed FGD Fixer commenting out lines twice
+- FGD Fixer now has a small console which displays commented out prefabs
+- Reduced FGD Fixer's execution time
+- H++ Tool will no longer link non-existent game folders
+- Fixed some error message boxes showing Yes/No buttons
+- Link button no longer displays to-be-created .bat arguments anymore
+- Disabled debug messages
+- Removed unused functions from the source code
+
 [v1.04]
 - Fixed Game folder list duplicated each time you pressed P3 button
 - Added Presets tab

@@ -189,7 +189,7 @@
             this.programVersion.Name = "programVersion";
             this.programVersion.Size = new System.Drawing.Size(34, 15);
             this.programVersion.TabIndex = 15;
-            this.programVersion.Text = "v1.04";
+            this.programVersion.Text = "v1.05";
             this.programVersion.Click += new System.EventHandler(this.programVersion_Click);
             // 
             // UPDATEbutton
@@ -259,7 +259,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(579, 23);
             this.menuStrip1.TabIndex = 21;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // aboutToolStripMenuItem
             // 
@@ -268,7 +267,6 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(37, 19);
             this.aboutToolStripMenuItem.Text = "File";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -326,7 +324,6 @@
             this.MinimumSize = new System.Drawing.Size(595, 387);
             this.Name = "HPPDirectoryLinker";
             this.Text = "Hammer++ Directory Linker";
-            this.Load += new System.EventHandler(this.HPPDirectoryLinker_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

@@ -32,6 +32,7 @@
             this.FixFGDbutton = new System.Windows.Forms.Button();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.fgdConsole = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,7 +56,6 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(196, 23);
             this.progressBar1.TabIndex = 5;
-            this.progressBar1.Click += new System.EventHandler(this.progressBar1_Click);
             // 
             // pictureBox1
             // 
@@ -66,22 +66,38 @@
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
+            // fgdConsole
+            // 
+            this.fgdConsole.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.fgdConsole.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.fgdConsole.ForeColor = System.Drawing.Color.Fuchsia;
+            this.fgdConsole.Location = new System.Drawing.Point(0, 143);
+            this.fgdConsole.Multiline = true;
+            this.fgdConsole.Name = "fgdConsole";
+            this.fgdConsole.ReadOnly = true;
+            this.fgdConsole.Size = new System.Drawing.Size(220, 84);
+            this.fgdConsole.TabIndex = 9;
+            this.fgdConsole.Text = "Waiting for Input...";
+            this.fgdConsole.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // FixPostalFGD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.Disable;
-            this.ClientSize = new System.Drawing.Size(220, 149);
+            this.ClientSize = new System.Drawing.Size(220, 227);
+            this.Controls.Add(this.fgdConsole);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.FixFGDbutton);
             this.Controls.Add(this.pictureBox1);
-            this.MaximumSize = new System.Drawing.Size(236, 188);
-            this.MinimumSize = new System.Drawing.Size(236, 188);
+            this.MaximumSize = new System.Drawing.Size(236, 266);
+            this.MinimumSize = new System.Drawing.Size(236, 266);
             this.Name = "FixPostalFGD";
             this.ShowIcon = false;
-            this.Text = "Fix Postal III FGD";
+            this.Text = "FGD Fixer";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -89,5 +105,6 @@
         private Button FixFGDbutton;
         private ProgressBar progressBar1;
         private PictureBox pictureBox1;
+        private TextBox fgdConsole;
     }
 }

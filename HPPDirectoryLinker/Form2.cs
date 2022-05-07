@@ -12,12 +12,27 @@ namespace HPPDirectoryLinker
 {
     public partial class FixPostalFGD : Form
     {
+        string[]? console;
+        int consoleindex;
+        int globalCounter;
+
+        public void PrintConsole(string str)
+        {
+            Array.Resize(ref console, consoleindex + 1);
+            console[consoleindex] = str;
+            consoleindex++;
+
+            fgdConsole.Lines = console;
+        }
+
         public FixPostalFGD()
         {
             InitializeComponent();
         }
-        static string[]? BracketRemoval(string[] array, string field)
+        private string[]? BracketRemoval(string[] array, string field)
         {
+            int counter = 0;
+
             string[]? temp = array;
 
             // Look for the last ] character
@@ -35,15 +50,18 @@ namespace HPPDirectoryLinker
                 string tscript = s.Replace("\t", "");
                 tscript = tscript.Replace(" ", "");
 
-                int printstart = tscript.IndexOf(field);
+                // Make sure we are checking for brackets from the right starting point
+                int printstart = tscript.IndexOf($"{field}(prefab)");
                 if (printstart != -1)
                 {
-                    Console.WriteLine($"Found first index at {index + 1}");
+                    //Console.WriteLine($"Found first index at {index + 1} (Field: '{field}')");
                     Array.Resize(ref startIndexes, startIndex + 1);
                     startIndexes[startIndex] = index;
                     startIndex++;
                     search = true;
                     found = true;
+                    counter++;
+                    globalCounter++;
                 }
 
                 if (search)
@@ -56,7 +74,7 @@ namespace HPPDirectoryLinker
                         }
                         else
                         {
-                            Console.WriteLine($"Found last character at {index + 1}");
+                            //Console.WriteLine($"Found last character at {index + 1} (Field: '{field}')");
                             Array.Resize(ref endIndexes, endIndex + 1);
                             endIndexes[endIndex] = index;
                             endIndex++;
@@ -84,9 +102,19 @@ namespace HPPDirectoryLinker
                 {
                     for (int i = startIndexes[j]; i < endIndexes[j] + 1; i++)
                     {
-                        temp[i] = "//" + temp[i];
+                        // Don't create extra comments
+                        int comment = temp[i].IndexOf("//");
+
+                        if (comment == -1)
+                            temp[i] = "//" + temp[i];
                     }
                 }
+
+                PrintConsole($"'{field}' -- ok ({counter})");
+            }
+            else
+            {
+                PrintConsole($"'{field}' -- not found");
             }
 
             return temp;
@@ -99,7 +127,7 @@ namespace HPPDirectoryLinker
 
             using (OpenFileDialog openFileDialog = new())
             {
-                openFileDialog.Filter = "fgd files (*.fgd)|*.fgd";
+                openFileDialog.Filter = "Hammer fgd files (*.fgd)|*.fgd";
                 openFileDialog.FilterIndex = 2;
                 openFileDialog.RestoreDirectory = true;
 
@@ -155,6 +183,10 @@ namespace HPPDirectoryLinker
                 }
             }
 
+            consoleindex = 0;
+            console = null;
+            Array.Resize(ref console, consoleindex + 1);
+
             progressBar1.Visible = true;
             progressBar1.Minimum = 0;
             progressBar1.Maximum = 4;
@@ -164,18 +196,24 @@ namespace HPPDirectoryLinker
             // This should be slow enough for the array to not be messed up
             string[] npc_prefab = BracketRemoval(fileContent, "npc_prefab");
             progressBar1.PerformStep();
-            Task.Delay(750).Wait();
+            Task.Delay(200).Wait();
+
             string[] ammo_prefab = BracketRemoval(npc_prefab, "ammo_prefab");
             progressBar1.PerformStep();
-            Task.Delay(750).Wait();
+            Task.Delay(200).Wait();
+
             string[] node_prefab = BracketRemoval(ammo_prefab, "node_prefab");
             progressBar1.PerformStep();
-            Task.Delay(750).Wait();
+            Task.Delay(200).Wait();
+
             string[] item_prefab = BracketRemoval(node_prefab, "item_prefab");
             progressBar1.PerformStep();
 
-            Task.Delay(750).Wait();
+            Task.Delay(200).Wait();
+
             progressBar1.Value = 0;
+
+            PrintConsole($"Commented out '{globalCounter}' prefabs");
 
             using (StreamWriter sw = File.CreateText($"{filePath}HPP_{fileName}"))
             {
@@ -194,11 +232,6 @@ namespace HPPDirectoryLinker
             {
                 MessageBox.Show($"'HPP_{fileName}' updated in '{filePath}'.", "FGD File Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
-        }
-
-        private void progressBar1_Click(object sender, EventArgs e)
-        {
 
         }
     }
