@@ -16,7 +16,7 @@ This is a program to help you getting Hammer++ work with the infamously bad Sour
 - Put Postal 3's Hammer FGD file into the FGD Fixer, it'll create a fixed copy of the FGD which you need to use later
 - In Hammer++ use 'SourceTest' when it asks for a game configuration to use (don't attempt creating a custom configuration because it will not work properly!)
 - Go to 'Tools->Options...' and add the fixed FGD into 'Game Data files'
-- If Hammer++ is showing black screen, relink directories, and avoid linking 'shaders' or 'sounds' folder next time
+- If Hammer++ is showing black screen, relink directories, and avoid linking 'shaders' or 'sound' folder next time
 
 # Why does this work?
 Hammer++ crashes whenever it's opened in Postal 3's root folder, as such there had to be an alternative way of loading maps with the map editor.
