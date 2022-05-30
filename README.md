@@ -12,8 +12,8 @@ This is a program to help you getting Hammer++ work with the infamously bad Sour
 ![Features](https://i.imgur.com/8ujpwC9.png)
 
 # How-To
-- Use the program to link directories, it'll look for a Hammer++, and 'p3' or 'cr_base' folder if it's a valid Postal 3 installation
-- Put Postal 3's Hammer FGD file into the FGD Fixer, it'll create a fixed copy of the FGD which you need to use it later
+- Use the program to link directories, it'll look for a valid Hammer++ installation in Source SDK Base 2013 (Hammer++ should not be put in Postal 3's bin folder!!), and 'p3' or 'cr_base' folder in Postal 3 if it's a valid Postal 3 installation
+- Put Postal 3's Hammer FGD file into the FGD Fixer, it'll create a fixed copy of the FGD which you need to use later
 - In Hammer++ use 'SourceTest' when it asks for a game configuration to use (don't attempt creating a custom configuration because it will not work properly!)
 - Go to 'Tools->Options...' and add the fixed FGD into 'Game Data files'
 - If Hammer++ is showing black screen, relink directories, and avoid linking 'shaders' or 'sounds' folder next time
