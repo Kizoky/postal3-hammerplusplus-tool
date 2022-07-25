@@ -144,7 +144,15 @@ namespace HPPDirectoryLinker
 
             if (SDKpathbox.Text.Length > 1 && P3pathbox.Text.Length > 1)
             {
-                loadOntoMainAppButton.Enabled = true;
+                // Don't attempt reading from incorrect paths
+                if (SDKpathbox.Text[0] != '<' && P3pathbox.Text[0] != '<')
+                {
+                    loadOntoMainAppButton.Enabled = true;
+                }
+                else
+                {
+                    loadOntoMainAppButton.Enabled = false;
+                }
             }
         }
 
@@ -264,7 +272,7 @@ namespace HPPDirectoryLinker
                 }
 
                 // Folder wasn't found
-                if (!ValidSDK)
+                if (!ValidSDK && !Main.bCheckDisabled)
                 {
                     string msg = "Not a valid path to Source SDK 2013 installation.";
                     string caption = "Invalid Path";
@@ -274,7 +282,7 @@ namespace HPPDirectoryLinker
 
                 // Check for Hammer++
                 string hpp = folderDlg.SelectedPath + "\\bin\\hammerplusplus.exe";
-                if (!File.Exists(hpp))
+                if (!File.Exists(hpp) && !Main.bCheckDisabled)
                 {
                     string msg = "Hammer++ was not detected in this SDK installation.";
                     string caption = "Hammer++ Not Detected";
@@ -316,7 +324,7 @@ namespace HPPDirectoryLinker
                     ValidP3 = true;
                 }
 
-                if (!ValidP3)
+                if (!ValidP3 && !Main.bCheckDisabled)
                 {
                     string msg = "Not a valid path to Postal III installation.";
                     string caption = "Invalid Path";
@@ -364,8 +372,17 @@ namespace HPPDirectoryLinker
                 }
 
                 // The ! and space is required so it's not always identical
-                sw.WriteLine($"! {presetNameBox.Text}.SDKpath=<Path to your Source SDK Base 2013 SP/MP installation>");
-                sw.WriteLine($"! {presetNameBox.Text}.P3path=<Path to your Postal III installation>");
+                // Use current paths if we have one
+                if (Main.SDKpathBox.Text[0] != '<' && Main.P3pathBox.Text[0] != '<')
+                {
+                    sw.WriteLine($"! {presetNameBox.Text}.SDKpath={Main.SDKpathBox.Text}");
+                    sw.WriteLine($"! {presetNameBox.Text}.P3path={Main.P3pathBox.Text}");
+                }
+                else
+                {
+                    sw.WriteLine($"! {presetNameBox.Text}.SDKpath=<Path to your Source SDK Base 2013 SP/MP installation>");
+                    sw.WriteLine($"! {presetNameBox.Text}.P3path=<Path to your Postal III installation>");
+                }
             }
 
             // Refill...

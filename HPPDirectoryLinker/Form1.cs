@@ -22,6 +22,16 @@ namespace HPPDirectoryLinker
             // Preventing any memory leak.. lol
             PresetsWindow.Dispose();
             PresetsWindow = new PresetsForm(SDKpathBox.Text, P3pathBox.Text, this);
+
+            // Command line args
+            string[] args = Environment.GetCommandLineArgs();
+            if (args.Length > 1)
+            {
+                if (args[1] == "-nocheck")
+                {
+                    bCheckDisabled = true;
+                }
+            }
         }
 
         private void SDKbutton_Click(object sender, EventArgs e)
@@ -42,7 +52,7 @@ namespace HPPDirectoryLinker
                 }
 
                 // Folder wasn't found
-                if (!ValidSDK)
+                if (!ValidSDK && !bCheckDisabled)
                 {
                     string msg = "Not a valid path to Source SDK 2013 installation.";
                     string caption = "Invalid Path";
@@ -52,7 +62,7 @@ namespace HPPDirectoryLinker
 
                 // Check for Hammer++
                 string hpp = folderDlg.SelectedPath + "\\bin\\hammerplusplus.exe";
-                if (!File.Exists(hpp))
+                if (!File.Exists(hpp) && !bCheckDisabled)
                 {
                     string msg = "Hammer++ was not detected in this SDK installation.";
                     string caption = "Hammer++ Not Detected";
@@ -92,7 +102,7 @@ namespace HPPDirectoryLinker
                     ValidP3 = true;
                 }
 
-                if (!ValidP3)
+                if (!ValidP3 && !bCheckDisabled)
                 {
                     string msg = "Not a valid path to Postal III installation.";
                     string caption = "Invalid Path";

@@ -20,6 +20,8 @@
             base.Dispose(disposing);
         }
 
+        public bool bCheckDisabled;
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -189,7 +191,7 @@
             this.programVersion.Name = "programVersion";
             this.programVersion.Size = new System.Drawing.Size(34, 15);
             this.programVersion.TabIndex = 15;
-            this.programVersion.Text = "v1.05";
+            this.programVersion.Text = "v1.06";
             this.programVersion.Click += new System.EventHandler(this.programVersion_Click);
             // 
             // UPDATEbutton
@@ -339,8 +341,8 @@
         #endregion
         private Button SDKbutton;
         private Button POSTAL3button;
-        private TextBox SDKpathBox;
-        private TextBox P3pathBox;
+        public TextBox SDKpathBox;
+        public TextBox P3pathBox;
         private Button LINKbutton;
         private CheckedListBox gameFolders;
         private CheckedListBox resourceFolders;

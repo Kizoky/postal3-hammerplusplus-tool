@@ -1,3 +1,8 @@
+[v1.06]
+- Fixed being able to try loading incorrect folder paths with Presets
+- Added '-nocheck' command arg to disable Postal 3 and Hammer++ installation checks
+- Adding a new Preset will now automatically use loaded paths from Main app if there's any
+
 [v1.05]
 - Fixed FGD Fixer commenting out parts of the FGD that it wasn't supposed to
 - Fixed FGD Fixer commenting out lines twice
