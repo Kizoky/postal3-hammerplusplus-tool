@@ -10,6 +10,7 @@ This is a program to help you getting Hammer++ work with the infamously bad Sour
 
 ![App](https://i.imgur.com/e63Xsia.png)
 ![Features](https://i.imgur.com/8ujpwC9.png)
+![scr-1](https://imgur.com/rfp3DWP.png)
 
 # How-To
 - Use the program to link directories, it'll look for a valid Hammer++ installation in Source SDK Base 2013 (Hammer++ should not be put in Postal 3's bin folder!!), and 'p3' or 'cr_base' folder in Postal 3 if it's a valid Postal 3 installation
