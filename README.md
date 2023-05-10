@@ -25,7 +25,8 @@ This is a program to help you getting Hammer++ work with the infamously bad Sour
 - In Hammer++ use 'SourceTest' when it asks for a game configuration to use (don't attempt creating a custom configuration because it will not work properly!)
 - Go to 'Tools->Options...' and add the fixed Postal 3 FGD file into 'Game Data files', then restart Hammer++.
 - If Hammer++ is showing a black screen, relink directories, and avoid linking 'shaders' or 'sound' folder next time.
-- When compiling maps, AVOID using Hammer++'s built-in compiler, use Postal 3's Hammer for that - or by using CompilePal.
+- When compiling maps, you can use Hammer++'s built-in compiler, but it's recommended to use Postal 3's compiling tools for that (because P3 is a licensed Source game and it has increased limits over Source SDK 2013)
+Video tutorial: https://www.youtube.com/watch?v=ETn5OLvsV6k
 
 # Technical Details
 - Hammer++ crashes whenever it's opened from Postal 3's bin folder, the reason is unknown.
